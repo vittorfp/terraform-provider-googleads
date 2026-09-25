@@ -1,0 +1,32 @@
+name: Feature request
+description: Propose a resource, field, data source, or workflow improvement.
+title: "feat: "
+labels:
+  - enhancement
+body:
+  - type: input
+    id: api_resource
+    attributes:
+      label: Google Ads API resource or field
+      description: Link to the official API reference when possible.
+    validations:
+      required: true
+  - type: textarea
+    id: use_case
+    attributes:
+      label: Use case
+      description: Describe the generic workflow without customer or campaign data.
+    validations:
+      required: true
+  - type: textarea
+    id: hcl
+    attributes:
+      label: Proposed HCL shape
+      render: hcl
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribution
+      options:
+        - label: I may be able to submit a pull request.
+

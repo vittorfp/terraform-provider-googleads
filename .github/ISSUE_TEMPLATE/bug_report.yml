@@ -1,0 +1,61 @@
+name: Bug report
+description: Report reproducible provider behavior that appears incorrect.
+title: "bug: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not include credentials, customer IDs, resource names, request IDs, URLs, ad copy, or Terraform state. Use the private security-reporting process for sensitive findings.
+  - type: input
+    id: version
+    attributes:
+      label: Provider version
+      placeholder: v0.5.0
+    validations:
+      required: true
+  - type: input
+    id: terraform
+    attributes:
+      label: Terraform or OpenTofu version
+    validations:
+      required: true
+  - type: dropdown
+    id: api_access
+    attributes:
+      label: Account access path
+      options:
+        - Direct account access
+        - Through a manager account
+        - Unknown
+    validations:
+      required: true
+  - type: textarea
+    id: configuration
+    attributes:
+      label: Redacted configuration
+      description: Provide the smallest HCL that reproduces the problem. Replace all identifiers and business data with synthetic values.
+      render: hcl
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior and redacted diagnostics
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety check
+      options:
+        - label: I removed credentials, account identifiers, resource names, request IDs, URLs, ad content, and state data.
+          required: true
+

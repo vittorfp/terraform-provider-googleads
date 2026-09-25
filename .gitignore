@@ -1,0 +1,36 @@
+# Compiled binaries at the repo root. Leading `/` keeps these from
+# matching subdirectories of the same name (notably cmd/googleads-tfgen/,
+# which had been silently gitignored from PR #1 until this fix).
+/terraform-provider-googleads
+/terraform-provider-googleads.exe
+/googleads-tfgen
+/googleads-tfgen.exe
+/googleads-diag
+/googleads-diag.exe
+generated/
+dist/
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfvars.json
+.terraform/
+.terraform.lock.hcl
+crash.log
+*.tfplan
+.envrc
+.env
+.env.local
+.env.*
+!.env.example
+credentials.json
+client_secret*.json
+service-account*.json
+oauth*.json
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+coverage.out
+coverage.html
+.claude/

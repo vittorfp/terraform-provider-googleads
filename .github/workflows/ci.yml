@@ -1,0 +1,83 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: build + vet + test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          cache: true
+      - run: go build ./...
+      - run: go vet ./...
+      - run: go test -race -timeout 5m ./...
+
+  tf-fmt:
+    name: terraform fmt -check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: '1.10'
+          terraform_wrapper: false
+      - run: terraform fmt -check -recursive examples/
+
+  docs:
+    name: docs in sync
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          cache: true
+      # tfplugindocs invokes `terraform providers schema` under the hood.
+      # If no terraform binary is on PATH it downloads one via hc-install,
+      # which currently fails on hosted runners because the HashiCorp
+      # release-signing GPG key has expired. Install Terraform up front so
+      # tfplugindocs reuses it.
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: '1.10'
+          terraform_wrapper: false
+      - name: regenerate docs
+        run: go run github.com/hashicorp/terraform-plugin-docs/cmd/tfplugindocs@v0.20.1 generate --provider-name googleads --rendered-provider-name googleads
+      - name: fail if docs/ drifted
+        run: |
+          if ! git diff --quiet docs/; then
+            echo "::error::docs/ is out of date — run \`make docs\` and commit the result"
+            git diff docs/
+            exit 1
+          fi
+
+  secrets:
+    name: secret scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: scan full Git history with Gitleaks
+        uses: docker://ghcr.io/gitleaks/gitleaks:v8.30.1
+        with:
+          args: git --redact --no-banner .
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          cache: true
+      - name: scan reachable Go vulnerabilities
+        run: go run golang.org/x/vuln/cmd/govulncheck@v1.8.0 ./...
+      - name: check dependency licenses
+        run: go run github.com/google/go-licenses@v1.6.0 check ./...
