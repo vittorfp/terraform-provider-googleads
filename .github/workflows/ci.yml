@@ -28,7 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - uses: hashicorp/setup-terraform@v3
+      - uses: hashicorp/setup-terraform@v4
         with:
           terraform_version: '1.10'
           terraform_wrapper: false
@@ -48,7 +48,7 @@ jobs:
       # which currently fails on hosted runners because the HashiCorp
       # release-signing GPG key has expired. Install Terraform up front so
       # tfplugindocs reuses it.
-      - uses: hashicorp/setup-terraform@v3
+      - uses: hashicorp/setup-terraform@v4
         with:
           terraform_version: '1.10'
           terraform_wrapper: false
