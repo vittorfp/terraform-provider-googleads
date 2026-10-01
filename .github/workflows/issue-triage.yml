@@ -1,0 +1,27 @@
+name: Issue triage
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  acknowledge:
+    if: github.event.issue.user.type != 'Bot'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Label and acknowledge
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE_URL: ${{ github.event.issue.html_url }}
+        run: |
+          gh issue edit "$ISSUE_URL" --add-label "needs-triage"
+          gh issue comment "$ISSUE_URL" --body "Thanks for opening this issue. This project is maintained on a best-effort basis with no response or resolution SLA. A maintainer will review it as availability allows.
+
+          Before sharing more details, please remove credentials, customer IDs, resource names, request IDs, URLs, ad copy, Terraform state, and generated account exports. Security-sensitive reports belong in GitHub's private vulnerability reporting flow.
+
+          This automated acknowledgement confirms that the issue entered the triage queue; it is not a technical diagnosis."
+
