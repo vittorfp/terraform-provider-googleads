@@ -152,7 +152,7 @@ Every new release must be signed. Configure `GPG_PRIVATE_KEY` and `GPG_PASSPHRAS
 
 ## Support and security
 
-This project is maintained on a best-effort basis with no SLA. Use GitHub Issues for reproducible bugs and feature requests. For vulnerabilities or accidental credential exposure, follow [`SECURITY.md`](SECURITY.md) and do not open a public issue.
+This project is maintained on a best-effort basis with no response or resolution SLA. Use GitHub Issues for reproducible bugs and feature requests, and read [`SUPPORT.md`](SUPPORT.md) before posting. New issues receive an automated acknowledgement and enter a maintainer triage queue; that acknowledgement is not a technical diagnosis. For vulnerabilities or accidental credential exposure, follow [`SECURITY.md`](SECURITY.md) and do not open a public issue.
 
 Contributions are welcome; see [`CONTRIBUTING.md`](CONTRIBUTING.md).
 

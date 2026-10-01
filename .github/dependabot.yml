@@ -5,8 +5,15 @@ updates:
     schedule:
       interval: weekly
     open-pull-requests-limit: 5
+    labels:
+      - dependencies
     groups:
+      google-ads-api:
+        patterns:
+          - github.com/shenzhencenter/google-ads-pb
       go-minor-and-patch:
+        exclude-patterns:
+          - github.com/shenzhencenter/google-ads-pb
         update-types:
           - minor
           - patch
@@ -16,4 +23,6 @@ updates:
     schedule:
       interval: monthly
     open-pull-requests-limit: 5
-
+    labels:
+      - dependencies
+      - github-actions
