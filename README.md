@@ -13,6 +13,33 @@ Public-beta candidate. The provider is used against real accounts and covers the
 
 The current `google-ads-pb` dependency is v1.25.1 and targets Google Ads API v25. Google sunsets API versions on a rolling schedule, so check the [official sunset table](https://developers.google.com/google-ads/api/docs/sunset-dates) before adopting a release.
 
+## Installation status
+
+There is no public binary or Terraform Registry release yet. The normal installation flow shown in [Quick start](#quick-start) will become available with the first signed public release, planned as `v0.6.0`.
+
+To evaluate the current source before that release, clone and build it locally:
+
+```sh
+git clone https://github.com/vittorfp/terraform-provider-googleads.git
+cd terraform-provider-googleads
+mkdir -p dist/dev
+go build -o dist/dev/terraform-provider-googleads .
+```
+
+Point Terraform at the absolute build directory with a development override in `~/.terraformrc`:
+
+```hcl
+provider_installation {
+  dev_overrides {
+    "vittorfp/googleads" = "/absolute/path/to/terraform-provider-googleads/dist/dev"
+  }
+
+  direct {}
+}
+```
+
+With the override active, run `terraform plan` directly from your Terraform configuration. A development override deliberately bypasses version selection and checksums, so use it only for evaluation and remove it after installing a signed release.
+
 ## Quick start
 
 ```hcl
@@ -20,7 +47,7 @@ terraform {
   required_providers {
     googleads = {
       source  = "vittorfp/googleads"
-      version = "~> 0.5"
+      version = "~> 0.6"
     }
   }
 }
