@@ -11,7 +11,7 @@ Built on [terraform-plugin-framework](https://developer.hashicorp.com/terraform/
 
 Public-beta candidate. The provider is used against real accounts and covers the core Search and Performance Max stacks, conversion actions, assets, targeting, shared negative lists, labels, and account import. Coverage is intentionally narrower than the full Google Ads API; see the generated [`docs/`](docs/) and [`BACKLOG.md`](BACKLOG.md) for the exact surface.
 
-The current protobuf dependency targets Google Ads API v24. Google sunsets API versions on a rolling schedule, so check the [official sunset table](https://developers.google.com/google-ads/api/docs/sunset-dates) before adopting a release.
+The current `google-ads-pb` dependency is v1.25.1 and targets Google Ads API v25. Google sunsets API versions on a rolling schedule, so check the [official sunset table](https://developers.google.com/google-ads/api/docs/sunset-dates) before adopting a release.
 
 ## Quick start
 
