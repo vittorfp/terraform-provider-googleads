@@ -45,6 +45,13 @@ func renderResult(t *testing.T, items []googleads.CriterionView, threshold int) 
 	return string(resources), importsBuf.String()
 }
 
+func TestRenderProviderUsesCurrentMinorVersion(t *testing.T) {
+	providerTF := string(renderProvider("1234567890"))
+	if !strings.Contains(providerTF, `version = "~> 0.6"`) {
+		t.Fatalf("generated provider version is stale:\n%s", providerTF)
+	}
+}
+
 func TestRenderKeywords_BelowThresholdUsesBlocks(t *testing.T) {
 	res, imp := renderResult(t, keywordSet("customers/123/adGroups/9", 3), 10)
 	if strings.Contains(res, "for_each") {

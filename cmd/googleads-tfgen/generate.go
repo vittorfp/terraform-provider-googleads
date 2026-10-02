@@ -269,7 +269,7 @@ func renderProvider(customerID string) []byte {
 	w.printf("  required_providers {\n")
 	w.printf("    googleads = {\n")
 	w.printf("      source  = \"vittorfp/googleads\"\n")
-	w.printf("      version = \"~> 0.5\"\n")
+	w.printf("      version = \"~> 0.6\"\n")
 	w.printf("    }\n")
 	w.printf("  }\n")
 	w.blockClose()
