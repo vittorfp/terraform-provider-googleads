@@ -57,7 +57,7 @@ Loose list of things worth doing next. Roughly ordered within each section by im
 
 - ~~Release scaffolding~~ — landed in PR #20. Fixed the `formats` → `format` quirk that blocked `goreleaser build` locally. Added `.github/workflows/release.yml` that fires on `v*` tags, runs goreleaser, optionally imports a GPG key when secrets are set. README has the tag-and-push runbook.
 - ~~**Private releases through `v0.5.0`** — cross-platform archives, checksums, and the Registry manifest are published by GoReleaser.~~
-- **Publish a sanitized `v0.6.0` or later to the Terraform Registry.** Needs: a public repo created from a reviewed snapshot/history, GPG key in repo secrets (`GPG_PRIVATE_KEY` + `GPG_PASSPHRASE`), and a newly signed release. Do not republish old tags with different checksums.
+- ~~**Publish a sanitized `v0.6.0` or later to the Terraform Registry.** Public repo, signing secrets, signed release, and Registry listing completed.~~
 - Decide on stability commitments before v1.0.0: schema breaking changes, deprecation policy.
 
 ## Cleanup
