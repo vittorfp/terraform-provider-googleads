@@ -13,11 +13,11 @@ Public beta. The provider is used against real accounts and covers the core Sear
 
 The current `google-ads-pb` dependency is v1.25.1 and targets Google Ads API v25. Google sunsets API versions on a rolling schedule, so check the [official sunset table](https://developers.google.com/google-ads/api/docs/sunset-dates) before adopting a release.
 
-## Installation status
+## Installation
 
-Signed `v0.6.0` binaries are available from [GitHub Releases](https://github.com/vittorfp/terraform-provider-googleads/releases/tag/v0.6.0). The Terraform Registry listing is not live yet; the normal installation flow shown in [Quick start](#quick-start) becomes available once that listing is published.
+Signed `v0.6.0` binaries are available from the [Terraform Registry](https://registry.terraform.io/providers/vittorfp/googleads/latest) and [GitHub Releases](https://github.com/vittorfp/terraform-provider-googleads/releases/tag/v0.6.0). Use the normal installation flow shown in [Quick start](#quick-start).
 
-To evaluate the current source before the Registry listing is available, clone and build it locally:
+To develop against the current source instead, clone and build it locally:
 
 ```sh
 git clone https://github.com/vittorfp/terraform-provider-googleads.git
