@@ -75,6 +75,32 @@ resource "googleads_campaign" "search" {
 }
 ```
 
+## Import an existing account
+
+Use [`googleads-tfgen`](cmd/googleads-tfgen/README.md) to turn an existing
+Google Ads account into Terraform resource and import blocks. The generator
+makes read-only API calls and writes local files under `generated/`; it does
+not change the Ads account.
+
+```sh
+export GOOGLE_ADS_CLIENT_ID=...
+export GOOGLE_ADS_CLIENT_SECRET=...
+
+go run ./cmd/googleads-tfgen -customer 1234567890
+cd generated/1234567890
+terraform init
+terraform plan
+```
+
+The first run opens the Google OAuth flow and stores the refresh token in a
+mode-`0600` local credentials file. Set `GOOGLE_ADS_LOGIN_CUSTOMER_ID` only
+when the target account is accessed through a manager account. Review the
+generated comments and the complete plan before running `terraform apply`;
+unsupported Google Ads resource variants are intentionally skipped.
+
+See the [generator guide](cmd/googleads-tfgen/README.md) for MCC discovery,
+non-interactive authentication, generated file coverage, and known limits.
+
 ## Development
 
 ```sh
