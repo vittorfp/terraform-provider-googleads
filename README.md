@@ -11,11 +11,11 @@ Built on [terraform-plugin-framework](https://developer.hashicorp.com/terraform/
 
 Public beta. The provider is used against real accounts and covers the core Search and Performance Max stacks, conversion actions, assets, targeting, shared negative lists, labels, and account import. Coverage is intentionally narrower than the full Google Ads API; see the generated [`docs/`](docs/) and [`BACKLOG.md`](BACKLOG.md) for the exact surface.
 
-The current `google-ads-pb` dependency is v1.25.1 and targets Google Ads API v25. Google sunsets API versions on a rolling schedule, so check the [official sunset table](https://developers.google.com/google-ads/api/docs/sunset-dates) before adopting a release.
+The current `google-ads-pb` dependency is v1.25.2 and targets Google Ads API v25. Google sunsets API versions on a rolling schedule, so check the [official sunset table](https://developers.google.com/google-ads/api/docs/sunset-dates) before adopting a release.
 
 ## Installation
 
-Signed `v0.6.0` binaries are available from the [Terraform Registry](https://registry.terraform.io/providers/vittorfp/googleads/latest) and [GitHub Releases](https://github.com/vittorfp/terraform-provider-googleads/releases/tag/v0.6.0). Use the normal installation flow shown in [Quick start](#quick-start).
+Signed `v0.6.1` binaries are available from the [Terraform Registry](https://registry.terraform.io/providers/vittorfp/googleads/latest) and [GitHub Releases](https://github.com/vittorfp/terraform-provider-googleads/releases/tag/v0.6.1). Use the normal installation flow shown in [Quick start](#quick-start).
 
 To develop against the current source instead, clone and build it locally:
 
@@ -196,8 +196,8 @@ Releases fire on tag push (`v*`). The workflow uses [goreleaser](https://gorelea
 
 ```sh
 # After merging changes to main (replace with the next unused version):
-git tag v0.6.0
-git push origin v0.6.0
+git tag v0.6.1
+git push origin v0.6.1
 # Wait for .github/workflows/release.yml to finish.
 ```
 
