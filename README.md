@@ -1,6 +1,13 @@
 # Terraform Provider for Google Ads
 
-A community Terraform provider for managing [Google Ads](https://ads.google.com) resources, plus a generator that imports an existing account into HCL.
+[![Terraform Registry](https://img.shields.io/terraform/provider/v/vittorfp/googleads?label=registry)](https://registry.terraform.io/providers/vittorfp/googleads/latest)
+[![Downloads](https://img.shields.io/terraform/provider/dt/vittorfp/googleads)](https://registry.terraform.io/providers/vittorfp/googleads/latest)
+[![CI](https://github.com/vittorfp/terraform-provider-googleads/actions/workflows/ci.yml/badge.svg)](https://github.com/vittorfp/terraform-provider-googleads/actions/workflows/ci.yml)
+[![License: MPL-2.0](https://img.shields.io/badge/license-MPL--2.0-blue.svg)](LICENSE)
+
+Manage Google Ads with Terraform. This independent community provider supports Search campaigns, Performance Max, conversion actions, assets, targeting, shared negative lists, labels, and account-to-HCL import.
+
+Use it to keep Google Ads campaign configuration in version control, review changes through Terraform plans, reproduce account structures, and turn an existing account into maintainable HCL with the included `googleads-tfgen` generator.
 
 Built on [terraform-plugin-framework](https://developer.hashicorp.com/terraform/plugin/framework) and the community-maintained [google-ads-pb](https://github.com/shenzhencenter/google-ads-pb) protobuf definitions (Google does not publish an official Go SDK for the Ads API).
 
@@ -12,6 +19,18 @@ Built on [terraform-plugin-framework](https://developer.hashicorp.com/terraform/
 Public beta. The provider is used against real accounts and covers the core Search and Performance Max stacks, conversion actions, assets, targeting, shared negative lists, labels, and account import. Coverage is intentionally narrower than the full Google Ads API; see the generated [`docs/`](docs/) and [`BACKLOG.md`](BACKLOG.md) for the exact surface.
 
 The current `google-ads-pb` dependency is v1.25.2 and targets Google Ads API v25. Google sunsets API versions on a rolling schedule, so check the [official sunset table](https://developers.google.com/google-ads/api/docs/sunset-dates) before adopting a release.
+
+## What you can manage
+
+| Area | Included resources and tooling |
+| --- | --- |
+| Search campaigns | Campaigns, budgets, ad groups, responsive search ads, keywords, audiences, and campaign criteria |
+| Performance Max | Asset groups, asset-group assets, text and image assets, and campaign assets |
+| Measurement | Conversion actions and customer conversion goals |
+| Account controls | Labels, shared negative lists, customer negatives, callouts, sitelinks, and structured snippets |
+| Existing accounts | Read-only discovery and account-to-HCL generation with `googleads-tfgen` |
+
+See the generated [`docs/`](docs/) for the complete resource schema and [`BACKLOG.md`](BACKLOG.md) for known coverage gaps.
 
 ## Installation
 
@@ -208,6 +227,28 @@ Every new release must be signed. Configure `GPG_PRIVATE_KEY` and `GPG_PASSPHRAS
 This project is maintained on a best-effort basis with no response or resolution SLA. Use GitHub Issues for reproducible bugs and feature requests, and read [`SUPPORT.md`](SUPPORT.md) before posting. New issues receive an automated acknowledgement and enter a maintainer triage queue; that acknowledgement is not a technical diagnosis. For vulnerabilities or accidental credential exposure, follow [`SECURITY.md`](SECURITY.md) and do not open a public issue.
 
 Contributions are welcome; see [`CONTRIBUTING.md`](CONTRIBUTING.md).
+
+## Frequently asked questions
+
+### Can Terraform manage Google Ads?
+
+Yes. This provider exposes a focused set of Google Ads resources through the standard Terraform workflow: configuration, plan, apply, import, and state refresh. It does not yet cover the entire Google Ads API.
+
+### Is there an official Google Ads Terraform provider?
+
+Google does not publish or support this provider. `vittorfp/googleads` is an independent community project built with the Terraform Plugin Framework and community-maintained Google Ads protobuf definitions.
+
+### Can I import an existing Google Ads account into Terraform?
+
+Yes. The included [`googleads-tfgen`](cmd/googleads-tfgen/README.md) command reads an accessible account and generates Terraform resource and import blocks. It makes read-only discovery calls and does not change the Ads account.
+
+### Does the provider support Performance Max campaigns?
+
+It supports the core Performance Max structure, including campaigns, budgets, asset groups, and asset-group assets. Check the generated documentation and backlog for the exact supported fields and variants.
+
+### Is it ready for production use?
+
+The provider is a pre-1.0 public beta used against real accounts. Pin the provider version, review every plan, test changes on a non-critical account first, and expect some schema changes between minor releases.
 
 ## License
 
