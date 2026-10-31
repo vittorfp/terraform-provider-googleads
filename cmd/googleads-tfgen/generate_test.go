@@ -47,7 +47,7 @@ func renderResult(t *testing.T, items []googleads.CriterionView, threshold int) 
 
 func TestRenderProviderUsesCurrentMinorVersion(t *testing.T) {
 	providerTF := string(renderProvider("1234567890"))
-	if !strings.Contains(providerTF, `version = "~> 0.6"`) {
+	if !strings.Contains(providerTF, `version = "~> 0.7"`) {
 		t.Fatalf("generated provider version is stale:\n%s", providerTF)
 	}
 }
