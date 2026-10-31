@@ -17,7 +17,7 @@ terraform {
   required_providers {
     googleads = {
       source  = "vittorfp/googleads"
-      version = "~> 0.6"
+      version = "~> 0.7"
     }
   }
 }
