@@ -34,7 +34,7 @@ See the generated [`docs/`](docs/) for the complete resource schema and [`BACKLO
 
 ## Installation
 
-Signed `v0.7.0` binaries are available from the [Terraform Registry](https://registry.terraform.io/providers/vittorfp/googleads/latest) and [GitHub Releases](https://github.com/vittorfp/terraform-provider-googleads/releases/tag/v0.7.0). Use the normal installation flow shown in [Quick start](#quick-start).
+Signed `v0.7.1` binaries are available from the [Terraform Registry](https://registry.terraform.io/providers/vittorfp/googleads/latest) and [GitHub Releases](https://github.com/vittorfp/terraform-provider-googleads/releases/tag/v0.7.1). Use the normal installation flow shown in [Quick start](#quick-start).
 
 To develop against the current source instead, clone and build it locally:
 
@@ -215,8 +215,8 @@ Releases fire on tag push (`v*`). The workflow uses [goreleaser](https://gorelea
 
 ```sh
 # After merging changes to main (replace with the next unused version):
-git tag v0.7.0
-git push origin v0.7.0
+git tag v0.7.1
+git push origin v0.7.1
 # Wait for .github/workflows/release.yml to finish.
 ```
 
